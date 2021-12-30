@@ -22,17 +22,6 @@ class GroupPermission extends Migration
             $table->timestamps();
         });
 
-        $permissions = [
-            'Gerir Usuários',
-            'Gerir Supervisores',
-            'Gerir Privilégios',
-            'Gerir Laboratórios',
-            'Gerir Disciplinas',
-            'Gerir Professores',
-            'Gerir Horários'
-        ];
-
-        collect($permissions)->each(fn($permission) => Permission::create(['name' => $permission]));
 
     }
 

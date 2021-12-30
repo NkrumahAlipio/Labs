@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Permission;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,6 +19,19 @@ class CreatePermissionsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        $permissions = [
+            'Gerir Usuários',
+            'Gerir Supervisores',
+            'Gerir Privilégios',
+            'Gerir Laboratórios',
+            'Gerir Disciplinas',
+            'Gerir Professores',
+            'Gerir Horários',
+            'Criar Professor'
+        ];
+
+        collect($permissions)->each(fn ($permission) => Permission::create(['name' => $permission]));
     }
 
     /**
