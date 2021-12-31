@@ -21,4 +21,9 @@ class Reserve extends Model
         return $this->belongsTo(Laboratory::class);
     }
 
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class);
+    }
+
 }

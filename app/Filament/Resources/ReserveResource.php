@@ -11,6 +11,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Builder;
 
 class ReserveResource extends Resource
 {
@@ -23,7 +24,11 @@ class ReserveResource extends Resource
         return $form
             ->schema([
                 BelongsToSelect::make('laboratory_id')
-                    ->relationship('laboratory', 'name')
+                    ->relationship('laboratory', 'name', fn (Builder $query) => $query->where('available', 1))
+                    ->rule('')
+                    ->required(),
+                BelongsToSelect::make('lesson_id')
+                    ->relationship('lesson', 'class')
                     ->required(),
                 Forms\Components\DateTimePicker::make('start')
                     ->required(),
@@ -38,6 +43,7 @@ class ReserveResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('user.name'),
                 Tables\Columns\TextColumn::make('laboratory.name'),
+                Tables\Columns\TextColumn::make('lesson.class'),
                 Tables\Columns\TextColumn::make('start')
                     ->dateTime('d-M-Y h:m'),
                 Tables\Columns\TextColumn::make('end')

@@ -18,7 +18,7 @@ class PermissionPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return in_array(2, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
     }
 
     /**
@@ -28,9 +28,9 @@ class PermissionPolicy
      * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Permission $permission)
+    public function view(User $user)
     {
-        //
+        return in_array(2, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
     }
 
     /**
@@ -41,54 +41,35 @@ class PermissionPolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Permission $permission)
+    public function update(User $user)
     {
-        //
+        return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Permission $permission)
+    public function delete(User $user)
     {
-        //
+        return false;
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Permission  $permission
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Permission $permission)
+    public function deleteAny(User $user)
     {
-        //
+        return false;
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Permission  $permission
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Permission $permission)
-    {
-        //
-    }
+
 }

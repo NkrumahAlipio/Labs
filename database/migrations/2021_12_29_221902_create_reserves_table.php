@@ -15,8 +15,9 @@ class CreateReservesTable extends Migration
     {
         Schema::create('reserves', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('lesson_id');
             $table->foreignId('laboratory_id');
-            $table->foreignId('user_id');
+            $table->foreignId('teacher_id');
             $table->dateTime('start');
             $table->dateTime('end');
             $table->timestamps();

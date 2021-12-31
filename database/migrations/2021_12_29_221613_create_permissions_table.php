@@ -21,14 +21,14 @@ class CreatePermissionsTable extends Migration
         });
 
         $permissions = [
-            'Gerir Usuários',
-            'Gerir Supervisores',
+            'Gerir Administradores',
             'Gerir Privilégios',
+            'Gerir Responsáveis',
+            'Gerir Supervisores',
+            'Gerir Professores',
             'Gerir Laboratórios',
             'Gerir Disciplinas',
-            'Gerir Professores',
             'Gerir Horários',
-            'Criar Professor'
         ];
 
         collect($permissions)->each(fn ($permission) => Permission::create(['name' => $permission]));

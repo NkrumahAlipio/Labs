@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Laboratory;
+use App\Models\Supervisor;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class LaboratoryPolicy
+class SupervisorPolicy
 {
     use HandlesAuthorization;
 
@@ -18,8 +18,8 @@ class LaboratoryPolicy
      */
     public function viewAny(User $user)
     {
-        return in_array(6, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray()) ||
-            in_array(5, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        return in_array(4, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        //
     }
 
     /**
@@ -30,7 +30,8 @@ class LaboratoryPolicy
      */
     public function view(User $user)
     {
-        return in_array(6, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        return in_array(4, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        //
     }
 
     /**
@@ -41,7 +42,8 @@ class LaboratoryPolicy
      */
     public function create(User $user)
     {
-        return in_array(6, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        return in_array(4, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        //
     }
 
     /**
@@ -52,22 +54,26 @@ class LaboratoryPolicy
      */
     public function update(User $user)
     {
-        return in_array(6, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        return in_array(4, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Reserve  $reserve
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user)
     {
-        return in_array(6, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        return in_array(4, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        //
     }
 
     public function deleteAny(User $user)
     {
-        return in_array(6, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        return in_array(4, collect($user->permissions)->map(fn ($permission) => $permission->id)->toArray());
+        //
     }
 }

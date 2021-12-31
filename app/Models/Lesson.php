@@ -13,7 +13,7 @@ class Lesson extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Teacher::class);
     }
 
 }

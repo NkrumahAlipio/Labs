@@ -11,6 +11,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 
 class PermissionResource extends Resource
 {
@@ -18,27 +19,13 @@ class PermissionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                BelongsToManyMultiSelect::make('groups')
-                    ->relationship('groups', 'name')
-            ]);
-    }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
+                TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
             ])
             ->filters([
                 //

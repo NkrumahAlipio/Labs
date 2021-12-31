@@ -1,12 +1,10 @@
 <?php
 
-use App\Models\Group;
-use App\Models\Permission;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class GroupPermission extends Migration
+class CreateResponsiblesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +13,11 @@ class GroupPermission extends Migration
      */
     public function up()
     {
-        Schema::create('group_permission', function (Blueprint $table) {
+        Schema::create('responsibles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->constrained();
-            $table->foreignId('permission_id')->constrained();
+            $table->foreignId('user_id');
             $table->timestamps();
         });
-
-
     }
 
     /**
@@ -32,6 +27,6 @@ class GroupPermission extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_permission');
+        Schema::dropIfExists('responsibles');
     }
 }

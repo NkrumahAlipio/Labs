@@ -11,9 +11,9 @@ class Permission extends Model
 
     protected $guarded = [];
 
-    public function groups()
+    public function users()
     {
-        return $this->belongsToMany(Group::class);
+        return $this->belongsToMany(User::class);
     }
 
 }

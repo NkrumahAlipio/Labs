@@ -21,7 +21,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'group_id',
     ];
 
     /**
@@ -43,14 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function group()
+    public function permissions()
     {
-        return $this->belongsTo(Group::class);
-    }
-
-    public function lessons()
-    {
-        return $this->hasMany(Lesson::class);
+        return $this->belongsToMany(Permission::class);
     }
 
 }

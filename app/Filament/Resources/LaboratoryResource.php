@@ -3,14 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\LaboratoryResource\Pages;
-use App\Filament\Resources\LaboratoryResource\RelationManagers;
 use App\Models\Laboratory;
 use Filament\Forms;
 use Filament\Forms\Components\BelongsToSelect;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\BooleanColumn;
 
 class LaboratoryResource extends Resource
 {
@@ -25,9 +26,10 @@ class LaboratoryResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-            BelongsToSelect::make('category_id')
-                ->relationship('category', 'name')
-                ->required(),
+                Forms\Components\TextInput::make('localization')
+                    ->required()
+                    ->maxLength(255),
+                Toggle::make('available')
             ]);
     }
 
@@ -35,11 +37,10 @@ class LaboratoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category.name'),
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('localization'),
+                BooleanColumn::make('available'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
             ])
             ->filters([
