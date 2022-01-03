@@ -20,7 +20,6 @@ class User extends Authenticatable implements FilamentUser
         return true;
     }
 
-
     /**
      * The attributes that are mass assignable.
      *
