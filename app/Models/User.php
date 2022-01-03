@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements FilamentUser, HasAvatar,HasName
+class User extends Authenticatable implements FilamentUser
 
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -20,15 +20,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar,HasName
         return true;
     }
 
-    public function getFilamentAvatarUrl(): ?string
-    {
-        return $this->avatar_url;
-    }
-
-    public function getFilamentName(): string
-    {
-        return "{$this->name}";
-    }
 
     /**
      * The attributes that are mass assignable.
